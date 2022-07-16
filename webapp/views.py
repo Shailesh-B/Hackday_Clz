@@ -1,12 +1,12 @@
 from django.views.generic.edit import CreateView
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, list, detail
 from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.auth.mixins import UserPassesTestMixin, LoginRequiredMixin
 from django.shortcuts import render
 from django.urls import reverse, reverse_lazy
 from django.utils import timezone
 from django.shortcuts import redirect
-from .models import Discussion
+from .models import Discussion, Assignment
 from django.db.models import Q
 
 
@@ -38,6 +38,15 @@ class HomeView(LoginRequiredMixin, TemplateView):
 
             }
         return render(request, self.template_name, context)
+
+
+class AssignmentView(LoginRequiredMixin, list.ListView):
+    model = Assignment
+    template_name = "webapp/assignment.html"
+    context_object_name = "assignments"
+
+    def get_queryset(self):
+        return super().get_queryset().filter(semester=self.request.user.semester)
 
 
 class DiscussionView(LoginRequiredMixin, CreateView):
