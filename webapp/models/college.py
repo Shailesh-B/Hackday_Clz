@@ -126,6 +126,7 @@ class Assignment(models.Model):
                                  on_delete=models.CASCADE,
                                  related_name="assignment",
                                  related_query_name="has_assignment")
+    description = models.TextField(null=True)
     upload = models.FileField(
         upload_to=utils.upload_directory_path, null=True, blank=True)
     teacher = models.ForeignKey(

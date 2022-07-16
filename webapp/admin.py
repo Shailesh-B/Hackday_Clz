@@ -11,7 +11,7 @@ class CustomUserAdmin(UserAdmin):
     form = CustomUserChangeForm
     model = CustomUser
     fieldsets = (
-        (None, {'fields': ('username', 'email', 'password','semester','is_teacher')}),
+        (None, {'fields': ('username', 'email', 'password','first_name','last_name','semester','is_teacher')}),
         ('Permissions', {'fields': ('is_staff', 'is_active',
          'is_superuser', 'groups', 'user_permissions')}),
         ('Dates', {'fields': ('last_login', 'date_joined')})

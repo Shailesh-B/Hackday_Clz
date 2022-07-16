@@ -135,5 +135,5 @@ AUTHENTICATION_BACKENDS = [
     "webapp.backend.EmailAuth",
 ]
 LOGIN_URL = "app_webapp:login"
-LOGIN_REDIRECT_URL = "app_webapp:home"
-LOGOUT_REDIRECT_URL = "app_webapp:home"
+LOGIN_REDIRECT_URL = "app_webapp:dashboard"
+LOGOUT_REDIRECT_URL = "app_webapp:logout"
