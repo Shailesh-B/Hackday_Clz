@@ -175,6 +175,8 @@ class Event(models.Model):
 
     def __str__(self):
         return self.topic
+    class Meta:
+        ordering = ("happening",)
 
 
 class Club(models.Model):

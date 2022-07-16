@@ -15,7 +15,7 @@ class AssignmentManager(models.Manager):
         return AssignmentQuerySet(self.model)
 
 
-class EventQuerySet(models.Model):
+class EventQuerySet(models.QuerySet):
     def get_upcoming(self):
         return self.filter(happening__gte=timezone.now())
 

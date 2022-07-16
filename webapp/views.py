@@ -7,7 +7,7 @@ from django.shortcuts import render
 from django.urls import reverse, reverse_lazy
 from django.utils import timezone
 from django.shortcuts import redirect
-from .models import Discussion, Assignment, Submission
+from .models import Discussion, Assignment, Submission, Event
 from django.db.models import Q
 
 
@@ -38,10 +38,10 @@ class HomeView(LoginRequiredMixin, TemplateView):
                 "remaining_assignments": user.semester.assignment.all().get_upcoming()
 
             }
-        else :
+        else:
             context = {
-                "routines":user.routine.filter(day_of_week = today),
-                "assignments":Submission.objects.filter(assignment__teacher=user,status="p")
+                "routines": user.routine.filter(day_of_week=today),
+                "assignments": Submission.objects.filter(assignment__teacher=user, status="p")
             }
             self.template_name = "webapp/teacher_index.html"
         return render(request, self.template_name, context)
@@ -63,10 +63,12 @@ class AssignmentCreateView(LoginRequiredMixin, CreateView):
     success_url = reverse_lazy("app_webapp:assignment")
 
     def get(self, request, pk):
-        return render(request, self.template_name, {"assignment":Assignment.objects.get(id=pk)})
+        return render(request, self.template_name, {"assignment": Assignment.objects.get(id=pk)})
+
     def form_valid(self, form):
         form.instance.student = self.request.user
         return super().form_valid(form)
+
 
 class DiscussionView(LoginRequiredMixin, CreateView):
     template_name = "webapp/discussion.html"
@@ -81,3 +83,13 @@ class DiscussionView(LoginRequiredMixin, CreateView):
         form.instance.user = self.request.user
         form.instance.semester = self.request.user.semester
         return super().form_valid(form)
+
+
+class EventView(LoginRequiredMixin, list.ListView):
+    template_name = "webapp/events.html"
+    model = Event
+    context_object_name = "events"
+
+    def get_queryset(self):
+        return super().get_queryset().filter(happening__date__gte=timezone.now())
+
