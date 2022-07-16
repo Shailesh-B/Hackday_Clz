@@ -1,10 +1,11 @@
+{% load static %}
 <div class="flex flex-col py-8 pl-6 pr-2 w-64 bg-white flex-shrink-0">
     <aside class="fixed inset-y-0 left-0 bg-white shadow-md max-h-screen w-60">
         <div class="flex flex-col justify-between h-full">
             <div class="flex-grow">
                 <div class="px-4 py-6 text-center border-b">
                     <img class="w-20 h-20 rounded-full ring-2 ring-blue-500 dark:ring-blue-500"
-                        src="https://flowbite.com/docs/images/people/profile-picture-5.jpg" alt="Large avatar" />
+                        src="{% static 'webapp/images/shailesh.png' %}" alt="Large avatar" />
                 </div>
                 <div class="p-4">
                     <ul class="space-y-1">
