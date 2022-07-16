@@ -35,6 +35,7 @@ class HomeView(LoginRequiredMixin, TemplateView):
         if not user.is_teacher:
             context = {
                 "routines": user.semester.routine.filter(day_of_week=today),
+                "events":Event.objects.filter(happening__date=timezone.now()),
                 "remaining_assignments": user.semester.assignment.all().get_upcoming()
 
             }

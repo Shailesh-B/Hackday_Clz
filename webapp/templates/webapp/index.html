@@ -44,7 +44,11 @@
                                     <div class="font-bold text-xl leading-none">
                                         Todays event
                                     </div>
-                                    <div class="mt-2">RAn event</div>
+                                    {% for event in events %}
+                                    <div class="mt-2">{{event.topic}}</div>
+                                    {% empty %}
+                                    <div class="mt-2">None</div>
+                                    {% endfor %}
                                 </div>
                             </div>
                             <div class="col-span-2">
