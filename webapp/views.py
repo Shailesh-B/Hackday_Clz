@@ -6,7 +6,7 @@ from django.shortcuts import render
 from django.urls import reverse, reverse_lazy
 from django.utils import timezone
 from django.shortcuts import redirect
-from .models import Discussion, Assignment
+from .models import Discussion, Assignment, Submission
 from django.db.models import Q
 
 
@@ -48,6 +48,18 @@ class AssignmentView(LoginRequiredMixin, list.ListView):
     def get_queryset(self):
         return super().get_queryset().filter(semester=self.request.user.semester)
 
+
+class AssignmentCreateView(LoginRequiredMixin, CreateView):
+    model = Submission
+    template_name = "webapp/homework.html"
+    fields = ("assignment",)
+    success_url = reverse_lazy("app_webapp:assignment")
+
+    def get(self, request, pk):
+        return render(request, self.template_name, {"assignment":Assignment.objects.get(id=pk)})
+    def form_valid(self, form):
+        form.instance.student = self.request.user
+        return super().form_valid(form)
 
 class DiscussionView(LoginRequiredMixin, CreateView):
     template_name = "webapp/discussion.html"

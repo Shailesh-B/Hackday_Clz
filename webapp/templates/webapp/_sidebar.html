@@ -10,7 +10,7 @@
                     <ul class="space-y-1">
                         <li>
                             <a href="{% url 'app_webapp:dashboard' %}"
-                                class="flex items-center bg-blue-200 rounded-xl font-bold text-sm text-yellow-900 py-3 px-4">
+                                class="flex bg-white  {% if current == 'dash' %}bg-blue-200 text-yellow-900{% endif %} rounded-xl font-bold text-sm py-3 px-4">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="text-lg mr-4" width="1.3em"
                                     height="1.3em" viewBox="2 0 24 24" stroke-width="5" stroke="currentColor"
                                     fill="none" stroke="currentColor">
@@ -23,7 +23,7 @@
                         </li>
                         <li>
                             <a href="javascript:void(0)"
-                                class="flex bg-white hover:bg-yellow-50 rounded-xl font-bold text-sm text-gray-900 py-3 px-4">
+                                class="flex bg-white  {% if current == 'atten' %}bg-blue-200 text-yellow-900{% endif %} rounded-xl font-bold text-sm py-3 px-4">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor"
                                     class="text-lg mr-4" viewBox="0 0 16 16">
                                     <path
@@ -33,7 +33,7 @@
                         </li>
                         <li>
                             <a href="{% url 'app_webapp:assignment' %}"
-                                class="flex bg-white hover:bg-yellow-50 rounded-xl font-bold text-sm text-gray-900 py-3 px-4">
+                                class="flex bg-white  {% if current == 'assign' %}bg-blue-200 text-yellow-900{% endif %} rounded-xl font-bold text-sm py-3 px-4"">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor"
                                     class="text-lg mr-4" viewBox="0 0 16 16">
                                     <path
@@ -43,7 +43,7 @@
                         </li>
                         <li>
                             <a href="{% url 'app_webapp:discussion' %}"
-                                class="flex bg-white hover:bg-yellow-50 rounded-xl font-bold text-sm text-gray-900 py-3 px-4">
+                                class="flex bg-white  {% if current == 'disc' %}bg-blue-200 text-yellow-900{% endif %} rounded-xl font-bold text-sm py-3 px-4"">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="text-lg mr-4" width="1.2em"
                                     height="1.2em" viewBox="2 0 24 24" stroke-width="2.4" stroke="currentColor"
                                     fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -57,7 +57,7 @@
                         </li>
                         <li>
                             <a href="javascript:void(0)"
-                                class="flex bg-white hover:bg-yellow-50 rounded-xl font-bold text-sm text-gray-900 py-3 px-4">
+                                class="flex bg-white  {% if current == 'events' %}bg-blue-200 text-yellow-900{% endif %} rounded-xl font-bold text-sm py-3 px-4">
                                 <svg class="text-lg mr-4" width="1.2em" height="1.2em" viewBox="2 0 24 24"
                                     stroke-width="2.4" stroke="currentColor" fill="none" stroke="currentColor"
                                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -79,7 +79,7 @@
                         </li>
                         <li>
                             <a href="javascript:void(0)"
-                                class="flex bg-white hover:bg-yellow-50 rounded-xl font-bold text-sm text-gray-900 py-3 px-4">
+                                class="flex bg-white  {% if current == 'notes' %}bg-blue-200 text-yellow-900{% endif %} rounded-xl font-bold text-sm py-3 px-4">
                                 <svg class="text-lg mr-4" width="1.2em" height="1.2em" viewBox="2 0 24 24"
                                     stroke-width="2.4" stroke="currentColor" fill="none" stroke-linecap="round"
                                     stroke-linejoin="round">
@@ -94,7 +94,7 @@
                         </li>
                         <li>
                             <a href="javascript:void(0)"
-                                class="flex bg-white hover:bg-yellow-50 rounded-xl font-bold text-sm text-gray-900 py-3 px-4">
+                                class="flex bg-white  {% if current == 'clubs' %}bg-blue-200 text-yellow-900{% endif %} rounded-xl font-bold text-sm py-3 px-4"">
                                 <svg class="text-lg mr-4" width="1.3em" height="1.3em" viewBox="2 0 24 24"
                                     stroke-width="2.4" stroke="currentColor" fill="none" stroke-linecap="round"
                                     stroke-linejoin="round">

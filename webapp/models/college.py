@@ -126,13 +126,13 @@ class Assignment(models.Model):
                                  on_delete=models.CASCADE,
                                  related_name="assignment",
                                  related_query_name="has_assignment")
+    image = models.ImageField(
+        upload_to=utils.upload_directory_path, null=True, blank=True)
     description = models.TextField(null=True)
     upload = models.FileField(
         upload_to=utils.upload_directory_path, null=True, blank=True)
     teacher = models.ForeignKey(
         USER, on_delete=models.CASCADE, related_name="+", related_query_name="+", validators=[validators.validate_teacher, ])
-    submitted_by = models.ManyToManyField(
-        USER, related_name="assignment", through="SubmittedBy", related_query_name="has_assignment")
     objects = AssignmentManager()
     due_date = models.DateField(db_index=True)
     assigned_at = models.DateField(default=timezone.now, editable=False)
@@ -148,12 +148,17 @@ class Assignment(models.Model):
         ]
 
 
-class SubmittedBy(models.Model):
+class Submission(models.Model):
     student = models.ForeignKey(USER, on_delete=models.CASCADE, validators=[
-                                validators.validate_student, ])
-    assignment = models.ForeignKey(Assignment, on_delete=models.CASCADE)
+                                validators.validate_student, ], related_name="submission", related_query_name="has_submission")
+    upload = models.FileField(
+        upload_to="assignments/%Y-%m-%d", null=True, blank=True)
+    answer = models.TextField(null=True, blank=True)
+    assignment = models.ForeignKey(Assignment, on_delete=models.CASCADE,
+                                   related_name="submission", related_query_name="has_submission")
     status = models.CharField(choices=STATUS_CHOICES,
                               max_length=1, default="p")
+
     submitted_at = models.DateField(default=timezone.now, editable=False)
 
     class Meta:
