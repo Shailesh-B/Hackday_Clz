@@ -1,3 +1,4 @@
+from ast import Sub
 from django.views.generic.edit import CreateView
 from django.views.generic import TemplateView, list, detail
 from django.contrib.auth.views import LoginView, LogoutView
@@ -37,6 +38,12 @@ class HomeView(LoginRequiredMixin, TemplateView):
                 "remaining_assignments": user.semester.assignment.all().get_upcoming()
 
             }
+        else :
+            context = {
+                "routines":user.routine.filter(day_of_week = today),
+                "assignments":Submission.objects.filter(assignment__teacher=user,status="p")
+            }
+            self.template_name = "webapp/teacher_index.html"
         return render(request, self.template_name, context)
 
 

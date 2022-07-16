@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.contrib.auth import get_user_model
 from django.contrib.auth.admin import UserAdmin
 from .forms import CustomUserCreationForm, CustomUserChangeForm
-from .models import College, Department, Semester, Attendence, Routine, Assignment, Club, Event, Discussion
+from .models import College, Department, Semester, Attendence, Routine, Assignment, Club, Event, Discussion,Submission
 CustomUser = get_user_model()
 
 
@@ -28,4 +28,4 @@ class CustomUserAdmin(UserAdmin):
 
 admin.site.register(CustomUser, CustomUserAdmin)
 admin.site.register([College, Department, Semester,
-                    Attendence, Routine, Assignment, Club, Event, Discussion])
+                    Attendence, Routine, Assignment, Club, Event, Discussion,Submission])
