@@ -4,8 +4,10 @@ from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.auth.mixins import UserPassesTestMixin, LoginRequiredMixin
 from django.shortcuts import render
 from django.urls import reverse, reverse_lazy
+from django.utils import timezone
 from django.shortcuts import redirect
 from .models import Discussion
+from django.db.models import Q
 
 
 class Login(UserPassesTestMixin, LoginView):
@@ -24,8 +26,18 @@ class Logout(LoginRequiredMixin, LogoutView):
 
 class HomeView(LoginRequiredMixin, TemplateView):
     template_name = "webapp/index.html"
-    def get(self,request,*args,**kwargs):
-        return render(request,self.template_name)
+
+    def get(self, request, *args, **kwargs):
+        today = timezone.now().date().strftime("%a").lower()
+        today = "sun" if today == "sat" else today
+        user = request.user
+        if not user.is_teacher:
+            context = {
+                "routines": user.semester.routine.filter(day_of_week=today),
+                "remaining_assignments": user.semester.assignment.all().get_upcoming(),
+
+            }
+        return render(request, self.template_name, context)
 
 
 class DiscussionView(LoginRequiredMixin, CreateView):
