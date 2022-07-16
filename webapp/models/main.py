@@ -10,7 +10,7 @@ class CustomUser(AbstractUser):
     profile = models.ImageField(upload_to='images/profiles')
     is_teacher = models.BooleanField(default=False)
     semester = models.ForeignKey("Semester", on_delete=models.SET_NULL,
-                                 related_name="student", related_query_name="has_student", null=True)
+                                 related_name="student", related_query_name="has_student", null=True,blank=True)
     def save(self,*args,**kwargs):
         if self.is_teacher:
             self.semester = None

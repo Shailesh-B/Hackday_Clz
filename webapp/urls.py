@@ -5,4 +5,5 @@ urlpatterns = [
     path("login/", views.Login.as_view(), name="login"),
     path("logout/", views.Logout.as_view(), name="logout"),
     path("discussion/", views.DiscussionView.as_view(), name="discussion"),
+    path("", views.HomeView.as_view(), name="dashboard"),
 ]

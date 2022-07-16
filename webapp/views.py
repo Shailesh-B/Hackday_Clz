@@ -1,4 +1,5 @@
 from django.views.generic.edit import CreateView
+from django.views.generic import TemplateView
 from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.auth.mixins import UserPassesTestMixin, LoginRequiredMixin
 from django.shortcuts import render
@@ -14,14 +15,20 @@ class Login(UserPassesTestMixin, LoginView):
         return not self.request.user.is_authenticated
 
     def handle_no_permission(self):
-        return redirect(reverse("app_webapp:home"))
+        return redirect(reverse("app_webapp:dashboard"))
 
 
 class Logout(LoginRequiredMixin, LogoutView):
     pass
 
 
-class DiscussionView(LoginRequiredMixin,CreateView):
+class HomeView(LoginRequiredMixin, TemplateView):
+    template_name = "webapp/index.html"
+    def get(self,request,*args,**kwargs):
+        return render(request,self.template_name)
+
+
+class DiscussionView(LoginRequiredMixin, CreateView):
     template_name = "webapp/discussion.html"
     model = Discussion
     fields = ("message",)
