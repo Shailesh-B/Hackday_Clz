@@ -136,4 +136,4 @@ AUTHENTICATION_BACKENDS = [
 ]
 LOGIN_URL = "app_webapp:login"
 LOGIN_REDIRECT_URL = "app_webapp:dashboard"
-LOGOUT_REDIRECT_URL = "app_webapp:logout"
+LOGOUT_REDIRECT_URL = "app_webapp:login"
