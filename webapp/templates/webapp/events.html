@@ -1,0 +1,31 @@
+{% extends 'webapp/_base.html' %}
+{% block title %} Events {% endblock title %}
+{% block content %}
+{% include "webapp/_sidebar.html" with current="events" %}
+<main class="ml-60 pt-16 max-h-screen overflow-auto">
+    <div class="px-6 py-8">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid grid-cols-4 gap-12 bg-white rounded-3xl p-8 mb-5">
+                {% for event in events %}
+                <div id="whoobe-3fery"
+                    class="w-full md:w-64 justify-center items-center bg-white shadow-lg rounded-lg flex flex-col">
+                    <img src="{{event.image.url}}"
+                        alt="img" title="img" class="w-full h-auto object-cover rounded-t-lg" id="whoobe-ixxe5" />
+                    <div id="whoobe-1okdg" class="w-full p-4 justify-start flex flex-col">
+                        <h4 class="border-b-2 text-3xl" id="whoobe-3mr7n">{{event.topic}}</h4>
+                        <h3 class="font-semibold">{{event.happening}}</h3>
+                        <p class="my-4" id="whoobe-950fw">
+                            {{event.description}}
+                        </p>
+                        <button value="button" class="my-4 px-4 py-2 text-white hover:bg-blue-700 bg-blue-500"
+                            id="whoobe-jkkr2">
+                            Read more
+                        </button>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock content %}
