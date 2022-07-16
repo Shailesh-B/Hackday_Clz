@@ -1,0 +1,36 @@
+{% extends 'webapp/_base.html' %}
+{% block title %} Attendence {% endblock title %}
+{% block content %}
+{% include "webapp/_sidebar.html" with current='atten' %}
+
+<main class="ml-60 pt-16 max-h-screen overflow-auto">
+    <div class="px-6 py-8">
+        <div class="max-w-6xl mx-auto">
+            <h1 class="text-3xl font-bold mb-5">Attendance</h1>
+            <div class="grid grid-cols-4 gap-3">
+                <div class="p-4 bg-gray-700 rounded-xl text-blue-50">
+                    <div class="text-lg leading-none">Manish Aryal</div>
+                    <div class="mt-1 text-lg font-medium text-green">
+                        11/20 days
+                    </div>
+                </div>
+                <!-- looping demo -->
+                <div class="p-4 bg-gray-700 rounded-xl text-blue-50">
+                    <div class="text-lg leading-none">Hari Raj</div>
+                    <div class="mt-1 text-lg font-medium text-green">
+                        11/20 days
+                    </div>
+                </div>
+                <div class="p-4 bg-gray-700 rounded-xl text-blue-50">
+                    <div class="text-lg leading-none">Ramesh yadav</div>
+                    <div class="mt-1 text-lg font-medium text-green">
+                        11/20 days
+                    </div>
+                </div>
+
+                <!-- yaha samma-->
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock content %}

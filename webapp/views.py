@@ -93,3 +93,5 @@ class EventView(LoginRequiredMixin, list.ListView):
     def get_queryset(self):
         return super().get_queryset().filter(happening__date__gte=timezone.now())
 
+class AttendenceView(LoginRequiredMixin,TemplateView):
+    template_name = "webapp/attendence.html"

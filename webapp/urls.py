@@ -7,6 +7,8 @@ urlpatterns = [
     path("discussion/", views.DiscussionView.as_view(), name="discussion"),
     path("assignment/create/<int:pk>/",views.AssignmentCreateView.as_view(), name="create_assignment"),
     path("assignments/",views.AssignmentView.as_view(), name="assignment"),
+    path("attendence/",views.AttendenceView.as_view(), name="attendence"),
     path("events/",views.EventView.as_view(),name="event"),
+
     path("", views.HomeView.as_view(), name="dashboard"),
 ]
